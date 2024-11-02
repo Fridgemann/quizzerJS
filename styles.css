@@ -1,0 +1,57 @@
+* {
+  background-color: #3066be;
+  font-family: "Itim";
+}
+
+.container {
+    background-color: white;
+    display: flex;
+    border-radius: 25px;
+    width: 35%;
+    height: 100%;
+    margin: 250px auto;
+}
+
+.quiz-app {
+    background: none;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+}
+
+.quiz-app * {
+    background: inherit;
+}
+
+.title {
+    font-family: "Mogra";
+    font-size: 3rem;
+    margin: 25px auto 0;
+}
+
+.question {
+    font-size: 2.2rem;
+    margin: 25px auto 0;
+    padding: 20px;
+}
+
+.answers {
+    margin-top: 30px;
+    font-size: 1.5rem;
+    width: 75%;
+    margin-bottom: 20px;
+}
+
+.ans {
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.line { 
+    width:75%; 
+    height:1px;
+    background-color: black; 
+}
