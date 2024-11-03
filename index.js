@@ -1,5 +1,6 @@
 const answers = document.querySelector('.answers');
 const question = document.querySelector('.question');
+let answerOptions = document.querySelectorAll('.ans');
 const questions = {
     "Who invented the World Wide Web?" : [
         "Tim Berners-Lee", "Bill Gates", "Steve Jobs" , "Mark Zuckerberg"
@@ -10,11 +11,21 @@ const questions = {
 };
 
 const rightAnswers = ["Tim Berners-Lee", "Francium"];
+const questionsKeys = Object.keys(questions);
+let questionNum = 1;
+
+question.textContent = questionNum + ". "  + questionsKeys[0];
+
+let loopCount = 0;
+answerOptions.forEach((elem) => {
+    elem.textContent = questions[questionsKeys[0]][loopCount];
+    loopCount += 1;
+})
 
 answers.addEventListener('click', (event) => {
     if (event.target !== answers) {
         console.log(event.target.textContent);
-        if (event.target.textContent === "Answer 1") {
+        if (rightAnswers.includes(event.target.textContent)) {
             console.log("right answer!");
         }
     }
