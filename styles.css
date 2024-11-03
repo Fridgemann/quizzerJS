@@ -49,6 +49,7 @@
     padding: 10px;
     margin-bottom: 20px;
     transition: 0.3s;
+    cursor: pointer;
 }
 .ans:hover {
     background-color: rgb(209, 209, 209);
