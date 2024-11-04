@@ -26,9 +26,16 @@ answers.addEventListener('click', (event) => {
     if (event.target !== answers) {
         console.log(event.target.textContent);
         if (rightAnswers.includes(event.target.textContent)) {
-            console.log("right answer!");
+            event.target.style.backgroundColor = "green";
+        }
+        else {
+            event.target.style.backgroundColor = "red";
+            let elems = document.querySelectorAll('.ans');
+            let targetElem = Array.from(elems).find(el => rightAnswers.includes(el.textContent.trim()));
+            targetElem.style.backgroundColor = "green";
         }
     }
+    
 });
 
 // find a way to display different questions

@@ -60,3 +60,16 @@
     height:1px;
     background-color: black; 
 }
+
+.next-btn {
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+    font-size: 2rem;
+}
+.next-btn:hover {
+    background-color: rgb(209, 209, 209);
+}
