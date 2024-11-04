@@ -1,3 +1,4 @@
+const quizApp = document.querySelector('.quiz-app');
 const answers = document.querySelector('.answers');
 const question = document.querySelector('.question');
 let answerOptions = document.querySelectorAll('.ans');
@@ -35,7 +36,11 @@ answers.addEventListener('click', (event) => {
             targetElem.style.backgroundColor = "green";
         }
     }
-    
+    let nextBtn = document.createElement('div');
+    nextBtn.classList.toggle('next-btn');
+    nextBtn.textContent = "Next";
+    quizApp.appendChild(nextBtn);
+    answers.style.pointerEvents = "none";
 });
 
 // find a way to display different questions
