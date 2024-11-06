@@ -8,23 +8,34 @@ const questions = {
     ],
     "What is the rarest naturally occuring element on Earth?" : [
         "Francium", "Astatine", "Promethium" , "Respiration"
+    ],
+    "Which planet is known as the Red Planet?": [
+        "Venus", "Mars", "Jupiter", "Saturn"
+    ],
+    "What is the largest mammal in the world?": [
+        "Elephant", "Blue Whale", "Giraffe", "Polar Bear"
     ]
 };
 
-const rightAnswers = ["Tim Berners-Lee", "Francium"];
+const rightAnswers = ["Tim Berners-Lee", "Francium", "Mars", "Blue Whale"];
 const questionsKeys = Object.keys(questions);
 let questionNum = 1;
 
 addQuestionAndAnswer();
 
 function addQuestionAndAnswer() {
-    question.textContent = questionNum + ". "  + questionsKeys[questionNum - 1];
-    let loopCount = 0;
-    answerOptions.forEach((elem) => {
-        elem.textContent = questions[questionsKeys[questionNum - 1]][loopCount];
-        loopCount += 1;
-    })    
-    questionNum += 1
+    if (questionNum <= rightAnswers.length) {
+        question.textContent = questionNum + ". "  + questionsKeys[questionNum - 1];
+        let loopCount = 0;
+        answerOptions.forEach((elem) => {
+            elem.textContent = questions[questionsKeys[questionNum - 1]][loopCount];
+            loopCount += 1;
+        })    
+        questionNum += 1
+        answers.style.pointerEvents = "auto";
+    }
+
+
 }
 
 
@@ -41,28 +52,29 @@ answers.addEventListener('click', (event) => {
             event.target.classList.add('wrong-ans');
             targetElem.classList.add('right-ans');
         }
+        answers.style.pointerEvents = "none";
+        if (!(document.querySelector('.next-btn'))) {
+            const nextBtn = document.createElement('div');
+            nextBtn.textContent = "Next";
+            nextBtn.classList.toggle('next-btn');
+            quizApp.appendChild(nextBtn);
+            nextBtn.addEventListener('click', () => {
+                addQuestionAndAnswer();
+                if (document.querySelector('.right-ans')) {
+                    rightElem = document.querySelector('.right-ans');
+                    rightElem.classList.remove('right-ans');
+                }
+                if (document.querySelector('.wrong-ans')) {
+                    wrongElem = document.querySelector('.wrong-ans');
+                    wrongElem.classList.remove('wrong-ans');
+                }
+            })
+            
+            
+    
+        }
     }
-    answers.style.pointerEvents = "none";
-    if (!(document.querySelector('.next-btn'))) {
-        const nextBtn = document.createElement('div');
-        nextBtn.textContent = "Next";
-        nextBtn.classList.toggle('next-btn');
-        quizApp.appendChild(nextBtn);
-        nextBtn.addEventListener('click', () => {
-            addQuestionAndAnswer();
-            answers.style.pointerEvents = "auto";
-            if (document.querySelector('.right-ans')) {
-                rightElem = document.querySelector('.right-ans');
-                rightElem.classList.remove('right-ans');
-            }
-            if (document.querySelector('.wrong-ans')) {
-                wrongElem = document.querySelector('.wrong-ans');
-                wrongElem.classList.remove('wrong-ans');
-            }
-        })
-        
-
-    }
+    
 
     
     
