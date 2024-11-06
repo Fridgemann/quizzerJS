@@ -15,33 +15,61 @@ const rightAnswers = ["Tim Berners-Lee", "Francium"];
 const questionsKeys = Object.keys(questions);
 let questionNum = 1;
 
-question.textContent = questionNum + ". "  + questionsKeys[0];
+addQuestionAndAnswer();
 
-let loopCount = 0;
-answerOptions.forEach((elem) => {
-    elem.textContent = questions[questionsKeys[0]][loopCount];
-    loopCount += 1;
-})
+function addQuestionAndAnswer() {
+    question.textContent = questionNum + ". "  + questionsKeys[questionNum - 1];
+    let loopCount = 0;
+    answerOptions.forEach((elem) => {
+        elem.textContent = questions[questionsKeys[questionNum - 1]][loopCount];
+        loopCount += 1;
+    })    
+    questionNum += 1
+}
+
 
 answers.addEventListener('click', (event) => {
     if (event.target !== answers) {
         console.log(event.target.textContent);
         if (rightAnswers.includes(event.target.textContent)) {
-            event.target.style.backgroundColor = "green";
+            event.target.classList.add('right-ans');
+            
         }
         else {
-            event.target.style.backgroundColor = "red";
             let elems = document.querySelectorAll('.ans');
             let targetElem = Array.from(elems).find(el => rightAnswers.includes(el.textContent.trim()));
-            targetElem.style.backgroundColor = "green";
+            event.target.classList.add('wrong-ans');
+            targetElem.classList.add('right-ans');
         }
     }
-    let nextBtn = document.createElement('div');
-    nextBtn.classList.toggle('next-btn');
-    nextBtn.textContent = "Next";
-    quizApp.appendChild(nextBtn);
     answers.style.pointerEvents = "none";
+    if (!(document.querySelector('.next-btn'))) {
+        const nextBtn = document.createElement('div');
+        nextBtn.textContent = "Next";
+        nextBtn.classList.toggle('next-btn');
+        quizApp.appendChild(nextBtn);
+        nextBtn.addEventListener('click', () => {
+            addQuestionAndAnswer();
+            answers.style.pointerEvents = "auto";
+            if (document.querySelector('.right-ans')) {
+                rightElem = document.querySelector('.right-ans');
+                rightElem.classList.remove('right-ans');
+            }
+            if (document.querySelector('.wrong-ans')) {
+                wrongElem = document.querySelector('.wrong-ans');
+                wrongElem.classList.remove('wrong-ans');
+            }
+        })
+        
+
+    }
+
+    
+    
+
 });
+
+// oshi no ko s2 ep1 21:47
 
 // find a way to display different questions
 
@@ -55,3 +83,8 @@ answers.addEventListener('click', (event) => {
 
 /* an array with right answers, if user's answer is included in the array
 its correct */
+
+// PICK UP FROM: next button seems to work, the way I've intended
+// for right and wrong answers to inherit and just get rid of a
+// different class for the occasion didnt work, but it might so I'll look
+// into it further

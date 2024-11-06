@@ -73,3 +73,18 @@
 .next-btn:hover {
     background-color: rgb(209, 209, 209);
 }
+
+.wrong-ans, .right-ans {
+    border: solid 2px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+.wrong-ans {
+    background-color: red;
+}
+.right-ans {
+    background-color: green;
+}
