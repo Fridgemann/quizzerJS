@@ -37,6 +37,7 @@ function addQuestionAndAnswer() {
     }
 
 
+
 }
 
 
@@ -60,8 +61,22 @@ answers.addEventListener('click', (event) => {
             nextBtn.classList.toggle('next-btn');
             quizApp.appendChild(nextBtn);
             nextBtn.addEventListener('click', () => {
-                if (questionNum === rightAnswers.length) {
+                if (questionNum === rightAnswers.length + 1) {
                     nextBtn.style.pointerEvents = "none";
+                    quizApp.removeChild(question);
+                    quizApp.removeChild(answers);
+                    quizApp.removeChild(nextBtn);
+                    let gameResult = document.createElement('div');
+                    gameResult.classList.toggle('question');
+                    gameResult.textContent = `You have scored ${score} out of ${rightAnswers.length}!`;
+                    let playAgainBtn = document.createElement('div');
+                    playAgainBtn.classList.toggle('next-btn');
+                    playAgainBtn.textContent = "Play again!";
+                    playAgainBtn.addEventListener('click', () => {
+                        location.reload();
+                    })
+                    quizApp.appendChild(gameResult);
+                    quizApp.appendChild(playAgainBtn);
                 }
                 addQuestionAndAnswer();
                 if (document.querySelector('.right-ans')) {
@@ -72,6 +87,8 @@ answers.addEventListener('click', (event) => {
                     wrongElem = document.querySelector('.wrong-ans');
                     wrongElem.classList.remove('wrong-ans');
                 }
+
+                
             })
         }
     }
