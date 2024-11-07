@@ -2,6 +2,7 @@ const quizApp = document.querySelector('.quiz-app');
 const answers = document.querySelector('.answers');
 const question = document.querySelector('.question');
 let answerOptions = document.querySelectorAll('.ans');
+let score = 0;
 const questions = {
     "Who invented the World Wide Web?" : [
         "Tim Berners-Lee", "Bill Gates", "Steve Jobs" , "Mark Zuckerberg"
@@ -44,7 +45,7 @@ answers.addEventListener('click', (event) => {
         console.log(event.target.textContent);
         if (rightAnswers.includes(event.target.textContent)) {
             event.target.classList.add('right-ans');
-            
+            score = score + 1;
         }
         else {
             let elems = document.querySelectorAll('.ans');
@@ -59,6 +60,9 @@ answers.addEventListener('click', (event) => {
             nextBtn.classList.toggle('next-btn');
             quizApp.appendChild(nextBtn);
             nextBtn.addEventListener('click', () => {
+                if (questionNum === rightAnswers.length) {
+                    nextBtn.style.pointerEvents = "none";
+                }
                 addQuestionAndAnswer();
                 if (document.querySelector('.right-ans')) {
                     rightElem = document.querySelector('.right-ans');
@@ -69,9 +73,6 @@ answers.addEventListener('click', (event) => {
                     wrongElem.classList.remove('wrong-ans');
                 }
             })
-            
-            
-    
         }
     }
     
@@ -81,22 +82,6 @@ answers.addEventListener('click', (event) => {
 
 });
 
-// oshi no ko s2 ep1 21:47
 
-// find a way to display different questions
 
-// question number
-
-// background color change to green on true / red on false
-
-// we need a next button
-
-// add the next button as a div to quiz-app container
-
-/* an array with right answers, if user's answer is included in the array
-its correct */
-
-// PICK UP FROM: next button seems to work, the way I've intended
-// for right and wrong answers to inherit and just get rid of a
-// different class for the occasion didnt work, but it might so I'll look
-// into it further
+// keep user score and display it at the end
